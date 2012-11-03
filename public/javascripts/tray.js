@@ -12,7 +12,7 @@ function showPanels () {
 }
 
 Zepto(function() {
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('http://nazuna.local:3000');
     socket.on('paneladd', function (status) {
         showPanels();
     });
