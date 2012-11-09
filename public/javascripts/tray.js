@@ -85,10 +85,12 @@
             console.log('enter');
             $filedropPanel.addClass('dragenter');
             isDragging = true;
+            return false;
         })
         $panels.on('dragover', function(evt) {
             console.log('over');
             isDragging = true;
+            return false;
         })
         $panels.on('dragleave', function(evt) {
             console.log('leave');
@@ -99,14 +101,14 @@
                     $filedropPanel.removeClass('dragenter');
                 }
             }, 100);
+            return false;
         })
         $panels.on('drop', function(evt) {
             console.log('drop');
             $filedropPanel.removeClass('dragenter');
             isDragging = false;
 
-            evt.stopPropagation();
-            evt.preventDefault();
+            return false;
         });
     });
 })();
