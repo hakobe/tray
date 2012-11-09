@@ -1,12 +1,13 @@
 extends layout
 
 block content
-    h1 #{title}
     .content
         form#upload(action='/api/upload.json', method='post', enctype='multipart/form-data')
-            input(type='file', name='image')
             input(type='submit', value='put')
         ul#panels
+            li.panel#filedrop-panel
+                #filedrop
+
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/underscore.js')
     script(src='/javascripts/zepto.js')

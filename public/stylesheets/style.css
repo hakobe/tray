@@ -1,3 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font: 18px sans-serif;
+    background-color: #303035;
+    font: 18px sans-serif;
+}
+
+.content {
+    width:1024px;
+    margin : 25px auto;
+}
+
+#upload {
+    display:none;
+}
+
+ul#panels {
+    width: 978px;
+    margin : 0 auto;
+    height : 180px;
+}
+
+li#filedrop-panel {
+    display:none;
+}
+
+li#filedrop-panel.dragenter {
+    display:inline-block;
+}
+
+#filedrop {
+    width : 320px;
+    height : 180px;
+    background: #eee;
+}
+
+#filedrop.dragenter {
+    background: #f2a0a1;
+}
+
+li.panel {
+    display: inline-block;
+    width : 320px;
+    height : 180px;
+    border : 3px solid white;
+    margin: -4px 0px -4px 0px;
+    overflow: hidden;
+}
+
+li.panel img {
+    min-width : 320px;
+    min-height : 180px;
+    max-width : 320px;
 }
