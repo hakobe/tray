@@ -26,7 +26,7 @@ exports.upload = function(req, res) {
     var file = req.files;
 
     console.dir(file);
-    if (file.imageFile) {
+    if (file && file.imageFile) {
         var ext = typeToExt( file.imageFile.type );
         if (!ext) {
             res.send(400, 'Bad Request');
