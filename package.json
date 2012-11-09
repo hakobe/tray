@@ -10,6 +10,7 @@
     "jade": "*",
     "socket.io" : "*",
     "underscore" : "*",
-    "redis" : "*"
+    "redis" : "*",
+    "request" : "*"
   }
 }
