@@ -51,9 +51,12 @@
                 formData.append('imageFile', file);
             }
             else {
-                var node = $(evt.dataTransfer.getData('text/html'));
-                // ひとつくるんでやるとfindできるようになる
-                var imageUrl = $('<div></div>').append(node).find('img').prop('src');
+                var imageUrl = evt.dataTransfer.getData('text/plain');
+                if (!imageUrl) {
+                    var node = $(evt.dataTransfer.getData('text/html'));
+                    // ひとつくるんでやるとfindできるようになる
+                    imageUrl = $('<div></div>').append(node).find('img').prop('src');
+                }
                 formData.append('imageUrl', imageUrl);
             }
 
