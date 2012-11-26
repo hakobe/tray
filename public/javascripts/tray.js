@@ -13,9 +13,8 @@
                     lastPanelId = panel.id;
                 }
             });
-            if ( $panels.children().length > 12 + 1) {
-                while ( $panels.children().length > 12 + 1) {
-                    console.log( _.last($panels.children()));
+            if ( $panels.children().length > panels.length + 1) {
+                while ( $panels.children().length > panels.length + 1) {
                     $(_.last($panels.children())).remove();
                 }
             };
@@ -41,7 +40,6 @@
             $filedrop.removeClass('dragenter');
         });
         $filedrop.on('drop', function(evt) {
-            console.log('drop');
             var formData = new FormData($('#upload').get(0));
 
             var files = evt.dataTransfer.files;
@@ -85,18 +83,15 @@
         var dragEndTimeout;
         var isDragging = false;
         $panels.on('dragenter', function(evt) {
-            console.log('enter');
             $filedropPanel.addClass('dragenter');
             isDragging = true;
             return false;
         })
         $panels.on('dragover', function(evt) {
-            console.log('over');
             isDragging = true;
             return false;
         })
         $panels.on('dragleave', function(evt) {
-            console.log('leave');
             isDragging = false;
             clearTimeout(dragEndTimeout);
             dragEndTimeout = setTimeout( function() {
@@ -107,7 +102,6 @@
             return false;
         })
         $panels.on('drop', function(evt) {
-            console.log('drop');
             $filedropPanel.removeClass('dragenter');
             isDragging = false;
 

@@ -2,11 +2,11 @@ var path         = require('path');
 var fs           = require('fs');
 var request      = require('request');
 var panelManager = require('../lib/panelManager');
+var config       = require('../lib/config');
 var _            = require('underscore');
 
-var UPLOAD_DIR_BASE = __dirname + '/../public/panelimages/';
 function createImagePath(id, ext) {
-    return path.normalize(UPLOAD_DIR_BASE + id + '.' + ext);
+    return path.normalize(config.UPLOAD_DIR_BASE + id + '.' + ext);
 }
 
 function typeToExt(type) {
@@ -25,7 +25,6 @@ function typeToExt(type) {
 exports.upload = function(req, res) {
     var file = req.files;
 
-    console.dir(file);
     if (file && file.imageFile) {
         var ext = typeToExt( file.imageFile.type );
         if (!ext) {
