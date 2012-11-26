@@ -34,11 +34,7 @@ li#filedrop-panel.dragenter {
 #filedrop {
     width : 320px;
     height : 180px;
-    background: #eee;
-}
-
-#filedrop.dragenter {
-    background: #f2a0a1;
+    background: #ffdb4f;
 }
 
 li.panel {

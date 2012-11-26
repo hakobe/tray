@@ -31,21 +31,13 @@
 
         showPanels();
 
-        var $filedrop = $('#filedrop');
-
-        $filedrop.on('dragenter', function(evt) {
-            $filedrop.addClass('dragenter');
-        });
-        $filedrop.on('dragleave', function(evt) {
-            $filedrop.removeClass('dragenter');
-        });
-
         var $filedropPanel = $('#filedrop-panel');
         var $panels = $('#panels');
         var dragEndTimeout;
         var isDragging = false;
         $panels.on('dragenter', function(evt) {
             $filedropPanel.addClass('dragenter');
+            $panels.find('li:last-child').hide();
             isDragging = true;
             return false;
         })
@@ -59,6 +51,7 @@
             dragEndTimeout = setTimeout( function() {
                 if (!isDragging) {
                     $filedropPanel.removeClass('dragenter');
+                    $panels.find('li:last-child').show();
                 }
             }, 100);
             return false;
