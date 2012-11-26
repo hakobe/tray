@@ -32,14 +32,39 @@
         var $filedrop = $('#filedrop');
 
         $filedrop.on('dragenter', function(evt) {
-            console.dir(evt);
             $filedrop.addClass('dragenter');
         });
         $filedrop.on('dragleave', function(evt) {
-            console.dir(evt);
             $filedrop.removeClass('dragenter');
         });
-        $filedrop.on('drop', function(evt) {
+
+        var $panels = $('#panels');
+        var $filedropPanel = $('#filedrop-panel');
+        var dragEndTimeout;
+        var isDragging = false;
+        $panels.on('dragenter', function(evt) {
+            $filedropPanel.addClass('dragenter');
+            isDragging = true;
+            return false;
+        })
+        $panels.on('dragover', function(evt) {
+            isDragging = true;
+            return false;
+        })
+        $panels.on('dragleave', function(evt) {
+            isDragging = false;
+            clearTimeout(dragEndTimeout);
+            dragEndTimeout = setTimeout( function() {
+                if (!isDragging) {
+                    $filedropPanel.removeClass('dragenter');
+                }
+            }, 100);
+            return false;
+        })
+        $panels.on('drop', function(evt) {
+            $filedropPanel.removeClass('dragenter');
+            isDragging = false;
+
             var formData = new FormData($('#upload').get(0));
 
             var files = evt.dataTransfer.files;
@@ -76,34 +101,6 @@
                 xhr.abort();
                 alert('upload failed');
             }, 30 * 1000);
-        });
-
-        var $panels = $('#panels');
-        var $filedropPanel = $('#filedrop-panel');
-        var dragEndTimeout;
-        var isDragging = false;
-        $panels.on('dragenter', function(evt) {
-            $filedropPanel.addClass('dragenter');
-            isDragging = true;
-            return false;
-        })
-        $panels.on('dragover', function(evt) {
-            isDragging = true;
-            return false;
-        })
-        $panels.on('dragleave', function(evt) {
-            isDragging = false;
-            clearTimeout(dragEndTimeout);
-            dragEndTimeout = setTimeout( function() {
-                if (!isDragging) {
-                    $filedropPanel.removeClass('dragenter');
-                }
-            }, 100);
-            return false;
-        })
-        $panels.on('drop', function(evt) {
-            $filedropPanel.removeClass('dragenter');
-            isDragging = false;
 
             return false;
         });
