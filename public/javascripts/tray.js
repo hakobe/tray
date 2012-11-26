@@ -3,6 +3,7 @@
 
     function showPanels () {
         var $panels = $('#panels');
+        var $filedropPanel = $('#filedrop-panel');
         var $firstPanel = $panels.children()[0];
 
         $.getJSON('/api/panels.json?' + $.param({ from : lastPanelId }), function(panels) {
@@ -18,6 +19,7 @@
                     $(_.last($panels.children())).remove();
                 }
             };
+            $filedropPanel.removeClass('dragenter');
         });
     }
 
@@ -38,8 +40,8 @@
             $filedrop.removeClass('dragenter');
         });
 
-        var $panels = $('#panels');
         var $filedropPanel = $('#filedrop-panel');
+        var $panels = $('#panels');
         var dragEndTimeout;
         var isDragging = false;
         $panels.on('dragenter', function(evt) {
@@ -62,7 +64,6 @@
             return false;
         })
         $panels.on('drop', function(evt) {
-            $filedropPanel.removeClass('dragenter');
             isDragging = false;
 
             var formData = new FormData($('#upload').get(0));
@@ -99,6 +100,7 @@
             abortTimeout = setTimeout(function() {
                 xhr.onreadystatechange = function () {};
                 xhr.abort();
+                $filedropPanel.removeClass('dragenter');
                 alert('upload failed');
             }, 30 * 1000);
 
