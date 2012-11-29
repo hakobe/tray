@@ -21,7 +21,12 @@ $ npm install
 $ node app.js
 ```
 
-## 画面のの例
+## 画面の例
+### いつも最新の12個だけを保持
 ![画面の例](https://raw.github.com/hakobe/tray/master/README/tray_img1.png)
+
+### 無地の色画像をうめてみる
 ![画面の例](https://raw.github.com/hakobe/tray/master/README/tray_img3.png)
+
+### 1つの画像を12個に分割して工夫すると..
 ![画面の例](https://raw.github.com/hakobe/tray/master/README/tray_img2.png)
