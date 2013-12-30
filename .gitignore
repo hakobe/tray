@@ -1,3 +1,5 @@
 /node_modules
 /public/panelimages/*
 !/public/panelimages/.keep
+/uploads/*
+!/uploads/.keep

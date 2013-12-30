@@ -17,7 +17,7 @@ app.configure(function(){
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.bodyParser({
-        uploadDir: '/tmp'
+        uploadDir: 'uploads'
     }));
     app.use(express.methodOverride());
     app.use(app.router);
