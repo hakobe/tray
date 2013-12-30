@@ -32,12 +32,16 @@
         showPanels();
 
         var $filedropPanel = $('#filedrop-panel');
+
         var $panels = $('#panels');
         var dragEndTimeout;
         var isDragging = false;
         $panels.on('dragenter', function(evt) {
             $filedropPanel.addClass('dragenter');
-            $panels.find('li:last-child').hide();
+            var $lastChild = $panels.find('li:last-child');
+            if ( $lastChild.attr('id') !== 'filedrop-panel' ) {
+                $lastChild.hide();
+            }
             isDragging = true;
             return false;
         })

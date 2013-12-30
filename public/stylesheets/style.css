@@ -34,7 +34,14 @@ li#filedrop-panel.dragenter {
 #filedrop {
     width : 320px;
     height : 180px;
-    background: #ffdb4f;
+    background: #abced8;
+}
+
+#filedrop-message {
+    color : white;
+    padding: 70px 0;
+    font-size: 20px;
+    text-align: center;
 }
 
 li.panel {
