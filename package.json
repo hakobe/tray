@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "image-tray",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,5 +12,8 @@
     "underscore" : "*",
     "redis" : "*",
     "request" : "*"
+  },
+  "engines": {
+    "node": "0.10.24"
   }
 }
