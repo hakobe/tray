@@ -24,11 +24,9 @@ ul#panels {
 }
 
 li#filedrop-panel {
-    display:none;
 }
 
 li#filedrop-panel.dragenter {
-    display:inline-block;
 }
 
 #filedrop {

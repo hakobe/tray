@@ -1,9 +1,8 @@
 (function() {
     var lastPanelId = 0;
 
-    function showPanels () {
+    function showPanels (complete) {
         var $panels = $('#panels');
-        var $filedropPanel = $('#filedrop-panel');
         var $firstPanel = $panels.children()[0];
 
         $.getJSON('/api/panels.json?' + $.param({ from : lastPanelId }), function(panels) {
@@ -19,25 +18,34 @@
                     $(_.last($panels.children())).remove();
                 }
             };
-            $filedropPanel.removeClass('dragenter');
+
+            if (complete) {
+                complete();
+            }
         });
     }
 
     Zepto(function() {
+        var $filedropPanel = $('#filedrop-panel');
+
         var socket = io.connect(location.href);
         socket.on('paneladd', function (status) {
-            showPanels();
+            showPanels(function() {
+                $filedropPanel.hide();
+            });
         });
 
-        showPanels();
-
-        var $filedropPanel = $('#filedrop-panel');
+        showPanels(function() {
+            setTimeout(function() {
+                $filedropPanel.hide();
+            }, 2000);
+        });
 
         var $panels = $('#panels');
         var dragEndTimeout;
         var isDragging = false;
         $panels.on('dragenter', function(evt) {
-            $filedropPanel.addClass('dragenter');
+            $filedropPanel.show();
             var $lastChild = $panels.find('li:last-child');
             if ( $lastChild.attr('id') !== 'filedrop-panel' ) {
                 $lastChild.hide();
@@ -54,7 +62,7 @@
             clearTimeout(dragEndTimeout);
             dragEndTimeout = setTimeout( function() {
                 if (!isDragging) {
-                    $filedropPanel.removeClass('dragenter');
+                    $filedropPanel.hide();
                     $panels.find('li:last-child').show();
                 }
             }, 100);
@@ -97,7 +105,7 @@
             abortTimeout = setTimeout(function() {
                 xhr.onreadystatechange = function () {};
                 xhr.abort();
-                $filedropPanel.removeClass('dragenter');
+                $filedropPanel.hide();
                 alert('upload failed');
             }, 30 * 1000);
 
